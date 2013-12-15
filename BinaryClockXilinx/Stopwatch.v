@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: Olin College of Engineering, Computer Architecture
-// Engineer: Emily Wang and Sophia Seitz
+// Company: 
+// Engineer: 
 // 
 // Create Date:    00:12:57 12/15/2013 
 // Design Name: 
@@ -25,25 +25,25 @@
 
 module OutputTwoHzSignal(Fout, CLK_50M);
 
-                input CLK_50M;
-                
-                output reg Fout;
-                reg [26:0] counter;
+    input CLK_50M;
+    
+    output reg Fout;
+    reg [26:0] counter;
 
-                initial begin
-                counter='b0;
-                end
+    initial begin
+    counter='b0;
+    end
 
-                always @(posedge CLK_50M) begin
-                   counter <= counter+1;
-                                
-                                if (counter == 'b1011111010111100001000000) begin //chopped off two of the zeroes to divide by 2
-                                                Fout = ~Fout;
-                                                counter <= 'b0;
-                                end 
-                   
-                end
-                
+    always @(posedge CLK_50M) begin
+       counter <= counter+1;
+        
+        if (counter == 'b1011111010111100001000000) begin //chopped off two of the zeroes to divide by 2
+            Fout = ~Fout;
+            counter <= 'b0;
+        end 
+       
+    end
+    
 endmodule 
 
 

@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\ewang\Documents\GitHub\BinaryClock\BinaryClockXilinx\Stopwatch.ncd
+OUTFILE=C:\Users\ewang\Documents\GitHub\BinaryClock\BinaryClockXilinx\Stopwatch.bit
+FAMILY=Spartan3
+PART=xc3s1000-5ft256
+WORKINGDIR=C:\Users\ewang\Documents\GitHub\BinaryClock\BinaryClockXilinx
+LICENSE=WebPack
+USER_INFO=210826461_0_0_916

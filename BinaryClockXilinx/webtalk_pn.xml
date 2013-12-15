@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pn" timeStamp="Sun Dec 15 18:39:50 2013">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="C7DCF72F12824606B7049C8D543B89E1" type="project"/>
+<property name="ProjectIteration" value="1" type="project"/>
+<property name="ProjectFile" value="C:/Users/ewang/Documents/GitHub/BinaryClock/BinaryClockXilinx/BinaryClockXilinx.xise" type="project"/>
+<property name="ProjectCreationTimestamp" value="2013-12-15T18:36:45" type="project"/>
+</section>
+<section name="Project Statistics" visible="true">
+<property name="PROP_Enable_Message_Filtering" value="false" type="design"/>
+<property name="PROP_FitterReportFormat" value="HTML" type="process"/>
+<property name="PROP_LastAppliedGoal" value="Balanced" type="design"/>
+<property name="PROP_LastAppliedStrategy" value="Xilinx Default (unlocked)" type="design"/>
+<property name="PROP_ManualCompileOrderImp" value="false" type="design"/>
+<property name="PROP_ProjectDescription" value="[Computer Architecture - Fall 2013 Olin College] Creating a clock that tells the time in binary with Verilog, a Spartan 3 FPGA, and pretty lights. ;D" type="process"/>
+<property name="PROP_PropSpecInProjFile" value="Store all values" type="design"/>
+<property name="PROP_Simulator" value="Modelsim-SE Verilog" type="design"/>
+<property name="PROP_SynthTopFile" value="changed" type="process"/>
+<property name="PROP_Top_Level_Module_Type" value="HDL" type="design"/>
+<property name="PROP_UseSmartGuide" value="false" type="design"/>
+<property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
+<property name="PROP_intProjectCreationTimestamp" value="2013-12-15T18:36:45" type="design"/>
+<property name="PROP_intWbtProjectID" value="C7DCF72F12824606B7049C8D543B89E1" type="design"/>
+<property name="PROP_intWbtProjectIteration" value="1" type="process"/>
+<property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
+<property name="PROP_intWorkingDirUsed" value="No" type="design"/>
+<property name="PROP_lockPinsUcfFile" value="changed" type="process"/>
+<property name="PROP_AutoTop" value="true" type="design"/>
+<property name="PROP_DevFamily" value="Spartan3" type="design"/>
+<property name="PROP_DevDevice" value="xc3s1000" type="design"/>
+<property name="PROP_DevFamilyPMName" value="spartan3" type="design"/>
+<property name="PROP_DevPackage" value="ft256" type="design"/>
+<property name="PROP_Synthesis_Tool" value="XST (VHDL/Verilog)" type="design"/>
+<property name="PROP_DevSpeed" value="-5" type="design"/>
+<property name="PROP_PreferredLanguage" value="Verilog" type="design"/>
+<property name="FILE_UCF" value="1" type="source"/>
+<property name="FILE_VERILOG" value="1" type="source"/>
+</section>
+</application>
+</document>

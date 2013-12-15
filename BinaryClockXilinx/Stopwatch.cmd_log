@@ -1,0 +1,6 @@
+xst -intstyle ise -ifn "C:/Users/ewang/Documents/GitHub/BinaryClock/BinaryClockXilinx/Stopwatch.xst" -ofn "C:/Users/ewang/Documents/GitHub/BinaryClock/BinaryClockXilinx/Stopwatch.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -i -p xc3s1000-ft256-5 Stopwatch.ngc Stopwatch.ngd  
+map -intstyle ise -p xc3s1000-ft256-5 -cm area -ir off -pr off -c 100 -o Stopwatch_map.ncd Stopwatch.ngd Stopwatch.pcf 
+par -w -intstyle ise -ol high -t 1 Stopwatch_map.ncd Stopwatch.ncd Stopwatch.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml Stopwatch.twx Stopwatch.ncd -o Stopwatch.twr Stopwatch.pcf 
+bitgen -intstyle ise -f Stopwatch.ut Stopwatch.ncd 
