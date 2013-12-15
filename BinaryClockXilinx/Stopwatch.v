@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Olin College of Engineering, Computer Architecture
+// Engineer: Emily Wang and Sophia Seitz
 // 
 // Create Date:    00:12:57 12/15/2013 
 // Design Name: 
@@ -243,103 +243,3 @@ module FiveBitXNOR(FBXNOROut, A, B);
     FBXNOROut = ~(A[0]^B[0]) & ~(A[1]^B[1]) & ~(A[2]^B[2]) & ~(A[3]^B[3]) & ~(A[4]^B[4]);  
   end
 endmodule
-
-
-/*module OutputTwoHzSignal (TheFout, TheFin);
-  //this assumes a 25 MHz signal from the FPGA
-  //The reason why it's 2Hz and not 1Hz because there's already a frequency divider in our clock code (see clock.v)
-  
-  //defining outputs and inputs
-  output TheFout;
-  input TheFin;
-  
-  //more intermediate stuff
-  //for the eight DivideBy5 instances
-  wire IntermediateF0;
-  wire IntermediateF1;
-  wire IntermediateF2;
-  wire IntermediateF3;
-  wire IntermediateF4;
-  wire IntermediateF5;
-  wire IntermediateF6;
-  wire IntermediateF7;
-  
-  //for the five DivideBy2 instances  
-  wire IntermediateF8;
-  wire IntermediateF9;
-  wire IntermediateF10;
-  wire IntermediateF11;
-  //the final DivideBy2 instance's output is Fout :P  
-  
-  //do stuff : a combination of the other modules gives us the desired signal
-  
-  //eight DivideBy5 instances will divide the signal by 5^8 
-  DivideBy5 F0 (IntermediateF0, TheFin);
-  DivideBy5 F1 (IntermediateF1, IntermediateF0);
-  DivideBy5 F2 (IntermediateF2, IntermediateF1);
-  DivideBy5 F3 (IntermediateF3, IntermediateF2);
-  DivideBy5 F4 (IntermediateF4, IntermediateF3);
-  DivideBy5 F5 (IntermediateF5, IntermediateF4);
-  DivideBy5 F6 (IntermediateF6, IntermediateF5);
-  DivideBy5 F7 (IntermediateF7, IntermediateF6);
-  
-  //five DivideBy2 instances will divide the signal by 2^5
-  DivideBy2 F8  (IntermediateF8, IntermediateF7);
-  DivideBy2 F9  (IntermediateF9, IntermediateF8);
-  DivideBy2 F10 (IntermediateF10, IntermediateF9);
-  DivideBy2 F11 (IntermediateF11, IntermediateF10);
-  DivideBy5 F12 (TheFout, IntermediateF11);
-  
-endmodule
-
-
-module DivideBy2(Fout2, Fin);
-  //define outputs and inputs
-  output reg Fout2;
-  input Fin;
-  
-  //do stuff: chain DFFout to the clock input of FF
-  initial begin
-    Fout2=0;
-  end
-  
-  always @(posedge Fin) // Hold value except at edge
-    Fout2 = ~Fout2;
-endmodule
-
-
-module DivideBy5(Fout5, Fin);
-  //define outputs and inputs
-  output reg Fout5;
-  input Fin;
-  reg [2:0] counter; //because 5 is not a power of 2
-  
-  //do stuff: chain DFFout to the clock input of FF
-  initial begin
-    Fout5=0;
-    counter='b0;
-  end
-  
-  //we're using behavioral verilog to save some typing
-  //see the documentation for a block diagram/conceptual description of the structural equivalent
-  always @(posedge Fin) begin // Hold value except at edge
-    if (counter == 5) begin
-      Fout5 = ~Fout5;
-      counter = 'b0;
-    end
-    
-    counter = counter + 'b1;
-  end 
-  
-endmodule
-
-module DivideBy10(Fout10, Fin);
-  output Fout10;
-  input Fin;
-  wire IntermediateF;
-
-  DivideBy5 Div5submodule(IntermediateF, Fin);
-  DivideBy2 Div2submodule(Fout10, IntermediateF);
-  
-endmodule
-*/
