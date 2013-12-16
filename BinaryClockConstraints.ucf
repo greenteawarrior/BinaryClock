@@ -1,3 +1,9 @@
+# Configurations file for using the 
+# BinaryClock.v as the top module in 
+# Xilinx ISE webpack
+
+# Maps software inputs/outputs to hardware locations
+
 # PlanAhead Generated physical constraints 
 
 //on the 6-pin header JA
