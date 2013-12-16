@@ -7,21 +7,50 @@ NET "Seconds[2]" LOC = T13;
 
 //on the 6-pin header JB
 NET "Seconds[3]" LOC = T12;
-NET "Seconds[4]" LOC = T12;
-NET "Seconds[5]" LOC = R11;
+NET "Seconds[4]" LOC = R11;
+NET "Seconds[5]" LOC = P8;
 
 //on the 16-pin header J8
-NET "Minutes[0]" LOC = P16;
-NET "Minutes[1]" LOC = P15;
-NET "Minutes[2]" LOC = T7;
-NET "Minutes[3]" LOC = R5;
-NET "Minutes[4]" LOC = N15;
-NET "Minutes[5]" LOC = J16;
+NET "Minutes[0]" LOC = P15;
+NET "Minutes[1]" LOC = T7;
+NET "Minutes[2]" LOC = R5;
+NET "Minutes[3]" LOC = M15;
+NET "Minutes[4]" LOC = N16;
+NET "Minutes[5]" LOC = R6;
 
-NET "Hours[0]" LOC = K16;
-NET "Hours[1]" LOC = K15;
-NET "Hours[2]" LOC = L15;
-NET "Hours[3]" LOC = M16;
-NET "Hours[4]" LOC = M15;
+//on the 6-pin header JC
+NET "Hours[0]" LOC = D5;
+NET "Hours[1]" LOC = P9;
+NET "Hours[2]" LOC = A5;
 
+//on the 6-pin header JD
+NET "Hours[3]" LOC = A9;
+NET "Hours[4]" LOC = A12;
+
+
+//push buttons on the FPGA
+NET "Buttons[0]" LOC = J13;
+NET "Buttons[1]" LOC = K14;
+NET "Buttons[2]" LOC = K13;
+
+
+//pull switches on the FPGA
+NET "Switches[0]" LOC = N15;
+NET "Switches[1]" LOC = J16;
+NET "Switches[2]" LOC = K16;
+NET "Switches[3]" LOC = K15;
+NET "Switches[4]" LOC = L15;
+NET "Switches[5]" LOC = M16;
+
+//LEDS on the FPGA above the switches
+NET "SetTime[0]" LOC = L14;
+NET "SetTime[1]" LOC = L13;
+NET "SetTime[2]" LOC = M14;
+NET "SetTime[3]" LOC = L12;
+NET "SetTime[4]" LOC = N14;
+NET "SetTime[5]" LOC = M13;
+
+
+//clock input
 NET "clk"  LOC = A8;
+
