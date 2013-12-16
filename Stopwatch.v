@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Olin College of Engineering, Computer Architecture
+// Engineer: Emily Wang and Sophia Seitz
 // 
 // Create Date:    00:12:57 12/15/2013 
 // Design Name: 
@@ -25,40 +25,39 @@
 
 module OutputTwoHzSignal(Fout, CLK_50M);
 
-    input CLK_50M;
-    
-    output reg Fout;
-    reg [26:0] counter;
+  input CLK_50M;            
+  output reg Fout;
+  reg [26:0] counter;
 
-    initial begin
+  initial begin
     counter='b0;
-    end
+  end
 
-    always @(posedge CLK_50M) begin
-       counter <= counter+1;
-        
-        if (counter == 'b1011111010111100001000000) begin //chopped off two of the zeroes to divide by 2
-            Fout = ~Fout;
-            counter <= 'b0;
-        end 
-       
-    end
-    
+  always @(posedge CLK_50M) begin
+    counter <= counter+1;
+                               
+    if (counter == 'b1011111010111100001000000) begin //chopped off two of the zeroes to divide by 2
+    Fout = ~Fout;
+    counter <= 'b0;
+    end 
+  end
+  
 endmodule 
 
 
 //minimum deliverable - stopwatch.
-module Stopwatch(ResetSeconds, Hours, Minutes, Seconds, clk); 
+module Stopwatch(SetTime, Hours, Minutes, Seconds, Buttons, Switches, clk); 
   //insert frequency divider and set/enable shenanigans
   
   //defining outputs and inputs
+  output [5:0] SetTime;
   output reg [4:0] Hours;
   output reg [5:0] Minutes;  
   output reg [5:0] Seconds;
+  input [2:0] Buttons;
+  input [5:0] Switches;
   input clk;
 
-  //debugging
-  output ResetSeconds; 
 
   //some intermediate stuff
   wire TwoHzSignal;
@@ -105,7 +104,21 @@ module Stopwatch(ResetSeconds, Hours, Minutes, Seconds, clk);
     Seconds <= NewSeconds;
     Minutes <= NewMinutes;
     Hours <= NewHours;
+	 
+	 if (Buttons[0] == 1) begin
+		Seconds <= 'b0;
+	 end
+	 
+	 if (Buttons[1] == 1) begin
+		Minutes <= Switches;
+	 end
+	 
+	 if (Buttons[2] == 1) begin
+		Hours <= Switches;
+	 end
   end
+
+assign SetTime = Switches;
 endmodule
 
 
