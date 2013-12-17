@@ -42,6 +42,9 @@
 *.map
 *.txt
 
+*.sldprt
+*.sldasm
+
 /iseconfig
 /ipcore_dir
 /_xmsgs

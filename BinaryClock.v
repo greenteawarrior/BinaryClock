@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-//Original code for specifically OutputTwoHzSignal from http://www.electro-tech-online.com/threads/fpga-led-help-w-verilog.106139/ forum post 
-//and modified (i.e. the counter chunk of code) it for our purposes :[
-
+//Original code for specifically OutputTwoHzSignal 
+//from http://www.electro-tech-online.com/threads/fpga-led-help-w-verilog.106139/ forum post 
+//was modified for our specific purposes
 module OutputTwoHzSignal(Fout, CLK_50M);
 
   input CLK_50M;            
@@ -44,8 +44,8 @@ module OutputTwoHzSignal(Fout, CLK_50M);
   
 endmodule 
 
+
 //All the code from BinaryClock onwards was written entirely by Emily and Sophia
-//minimum deliverable - stopwatch.
 module BinaryClock(SetTime, Hours, Minutes, Seconds, Buttons, Switches, clk); 
   //insert frequency divider and set/enable shenanigans
   
@@ -63,8 +63,10 @@ module BinaryClock(SetTime, Hours, Minutes, Seconds, Buttons, Switches, clk);
   wire TwoHzSignal;
   wire [4:0] IncrementedHours;
   wire [4:0] NewHours;
+  wire HoursEqualTwentyThree;
   wire [5:0] IncrementedMinutes;
   wire [5:0] NewMinutes;
+  wire MinutesEqualFiftyNine;
   wire [5:0] IncrementedSeconds;
   wire [5:0] NewSeconds;
   reg One;
@@ -90,36 +92,37 @@ module BinaryClock(SetTime, Hours, Minutes, Seconds, Buttons, Switches, clk);
 
   //minutes shenanigans
   SixBitIncrement MinutesSBI (IncrementedMinutes, Minutes, ResetSeconds);
-  SixBitXNOR MinutesXNOR (ResetMinutes, Minutes, FiftyNine);
+  SixBitXNOR MinutesXNOR (MinutesEqualFiftyNine, Minutes, FiftyNine);
+  and ResetMinutesAnd(ResetMinutes,MinutesEqualFiftyNine, ResetSeconds);
   SixBitMux MinutesMux (NewMinutes, IncrementedMinutes, ResetMinutes);
 
   //hours shenanigans
   FiveBitIncrement HoursFBI (IncrementedHours, Hours, ResetMinutes);
-  FiveBitXNOR HoursXNOR (ResetHours, Hours, TwentyThree);
+  FiveBitXNOR HoursXNOR (HoursEqualTwentyThree, Hours, TwentyThree);
+  and ResetHoursAnd(ResetHours, HoursEqualTwentyThree, ResetMinutes);
   FiveBitMux HoursMux (NewHours, IncrementedHours, ResetHours);
   
   OutputTwoHzSignal GeneratingTwoHzSignal (TwoHzSignal, clk);
   
   always @ (posedge TwoHzSignal) begin
-    //incrementing the appropriate values every second
     Seconds <= NewSeconds;
     Minutes <= NewMinutes;
     Hours <= NewHours;
-	 
-   //reset the seconds by pressing a button!
-	 if (Buttons[0] == 1) begin
-		Seconds <= 'b0;
-	 end
-	 
-   //setting the minutes with the pull switches and a certain button press!
-	 if (Buttons[1] == 1) begin
-		Minutes <= Switches;
-	 end
-	 
-   //setting the hours with the pull switches and a certain button press!
-	 if (Buttons[2] == 1) begin
-		Hours <= Switches;
-	 end
+    
+    //reset the seconds by pressing a button!              
+    if (Buttons[0] == 1) begin
+      Seconds <= 'b0;
+    end
+  
+    //setting the minutes with the pull switches and a certain button press!
+    if (Buttons[1] == 1) begin
+      Minutes <= Switches;
+    end
+  
+    //setting the hours with the pull switches and a certain button press!
+    if (Buttons[2] == 1) begin
+      Hours <= Switches;
+    end
   end
 
 assign SetTime = Switches;
@@ -138,7 +141,6 @@ module SixBitRegister(Dout, Din, clk);
   always @ (posedge clk)
     Dout = Din;
 endmodule
-
 
 //register module for storing the hours 
 //five bits because d24 is a 5-bit number
@@ -190,7 +192,6 @@ module FiveBitIncrement(FBIOut, A, Cin);
   always @ *
     FBIOut = A + Cin;
 endmodule
-
 
 //two input six bit mux! for the minutes and seconds (what a surprise)
 //we're doing this in behavioral because we already know how to
