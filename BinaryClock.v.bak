@@ -240,31 +240,16 @@ module FiveBitIncrement(FBIOut, A, Cin);
     FBIOut = A + Cin;
 endmodule
 
-
-/*
-SixBitMux
-
-This is for deciding what value to assign to mintues and seconds. We either set 
-the new value to the incremented value or whether to reset to zero. Therefore,
-we only have one input into our mux. We've done this bit in behavioral verilog 
-to save some typing, but this is just a simple mux , and could be implemented
-using two and gates, one or gate, and one not gate. 
-
-OUTPUTS:
-SBMOut:   6 bits  The value we'll be setting minutes or seconds to
-
-INPUTS: 
-A:        6 bits  The value that we are incrementing
-Select:   1 bit   Whether we are resetting or not. 
-*/
+//two input six bit mux! for the minutes and seconds (what a surprise)
+//we're doing this in behavioral because we already know how to
+//make muxes in structural and would like to save some typing...
 module SixBitMux(SBMOut, A, Select);
   //defining ouputs and inputs
   output reg [5:0] SBMOut;
   input [5:0] A; //signal A
-
+  //signal B is always zero
   input Select;
-  
-  //Muxing
+
   always @ * begin
     if (Select == 0) begin
       SBMOut = A;
@@ -275,30 +260,16 @@ module SixBitMux(SBMOut, A, Select);
 endmodule
 
 
-/*
-FiveBitMux
-
-This is for deciding what value to assign to hours register. We either set 
-the new value to the incremented value or whether to reset to zero. Therefore,
-we only have one input into our mux. We've done this bit in behavioral verilog 
-to save some typing, but this is just a simple mux , and could be implemented
-using two and gates, one or gate, and one not gate. 
-
-OUTPUTS:
-FBMOut:   5 bits  The value we'll be setting hours to
-
-INPUTS: 
-A:        5 bits  The value that we are incrementing
-Select:   1 bit   Whether we are resetting or not. 
-*/
-
+//two input five bit mux! for the hours (what a surprise)
+//we're doing this in behavioral because we already know how to
+//make muxes in structural and would like to save some typing...
 module FiveBitMux(FBMOut, A, Select);
   //defining outputs and inputs
   output reg [4:0] FBMOut;
   input [4:0] A; //signal A
+  //signal B is always zero
   input Select;
 
-  //Muxing
   always @ * begin
     if (Select == 0) begin
       FBMOut = A;
@@ -309,27 +280,15 @@ module FiveBitMux(FBMOut, A, Select);
 endmodule
 
 
-/*
-SixBitXNOR
-
-This module is for seconds and minutes. It takes in two inputs, and returns 1 if the 
-two inputs are equal and 0 if they are not. we've done this in behavioral verilog 
-to save some typing, but this would be implemented in structural verilog with taking
-the bit-wise XNOR of A and B and then feeding each of those bits into a 6-input AND
-gate and returning the output of that and gate.
-OUTPUTS:
-SBXNOROut:  1 bit  Does A==B?
-
-INPUTS: 
-A:          6 bits  Value 1 (Comparing this value to Value 2)
-B:          6 bit   Value 2 (Comparint this value to Value 1) 
-*/
+//six bit xnor. for those minute and second things
 module SixBitXNOR(SBXNOROut, A, B);
   //defining outputs and inputs
   output reg SBXNOROut; //gotta be one bit
   input [5:0] A;
   input [5:0] B;
+  //reg [5:0] leXNOROut;
 
+  //xnor leXNOR (leXNOROut, A, B);
   //behavioral to save typing
   always @ * begin
     SBXNOROut = ~(A[0]^B[0]) & ~(A[1]^B[1]) & ~(A[2]^B[2]) & ~(A[3]^B[3]) & ~(A[4]^B[4]) & ~(A[5]^B[5]);  
@@ -337,28 +296,15 @@ module SixBitXNOR(SBXNOROut, A, B);
 endmodule
 
 
-/*
-FiveBitXNOR
-
-This module is for hours. It takes in two inputs, and returns 1 if the two inputs are 
-equal and 0 if they are not. we've done this in behavioral verilog to save some typing, 
-but this would be implemented in structural verilog with taking the bit-wise XNOR of A 
-and B and then feeding each of those bits into a 5-input AND gate and returning the
-output of that and gate.
-OUTPUTS:
-SBXNOROut:  1 bit  Does A==B?
-
-INPUTS: 
-A:          5 bits  Value 1 (Comparing this value to Value 2)
-B:          5 bit   Value 2 (Comparint this value to Value 1) 
-*/
-
+//five bit xnor. for that hour thing
 module FiveBitXNOR(FBXNOROut, A, B);
   //defining outputs and inputs
   output reg FBXNOROut; //gotta be one bit
   input [4:0] A;
   input [4:0] B;
+  //reg [4:0] leXNOROut;
 
+  //xnor leXNOR (leXNOROut, A, B);
   //behavioral to save typing
   always @ * begin
     FBXNOROut = ~(A[0]^B[0]) & ~(A[1]^B[1]) & ~(A[2]^B[2]) & ~(A[3]^B[3]) & ~(A[4]^B[4]);  
