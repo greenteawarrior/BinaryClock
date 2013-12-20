@@ -41,9 +41,8 @@
 *.mrp
 *.map
 *.txt
+*.projectmgr
 
-*.sldprt
-*.sldasm
 
 /iseconfig
 /ipcore_dir
